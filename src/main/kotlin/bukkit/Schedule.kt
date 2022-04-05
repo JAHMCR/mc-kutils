@@ -16,8 +16,8 @@ fun BukkitPlugin.schedule(
     lateinit var task: BukkitTask
     fun f() = task.callback()
     task = server.scheduler.run {
-        val sdelay = unit.toSeconds(delay) * 20
-        val speriod = unit.toSeconds(period) * 20
+        val sdelay = ((unit.toMillis(delay) / 1000.0) * 20).toLong()
+        val speriod = ((unit.toMillis(period) / 1000.0) * 20).toLong()
         when {
             period > 0 -> {
                 when {
